@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import Button from '../components/Button';
+// import Button from '../components/Button';
 import Input from '../components/Input';
 import { FormLoginType } from '../types';
 import { userEmail } from '../redux/actions/actionUser';
@@ -16,7 +16,7 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
     setFormData(((prevData) => ({
       ...prevData,
@@ -24,7 +24,7 @@ function Login() {
     })));
   };
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     dispatch(userEmail(formData.email));
     navigate('/carteira');
