@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import Button from '../components/Button';
+import Button from '../components/Button';
 import Input from '../components/Input';
 import { FormLoginType } from '../types';
 import { userEmail } from '../redux/actions/actionUser';
@@ -63,11 +63,11 @@ function Login() {
         required
       />
 
-      <button
+      <Button
+        label="Entrar"
+        type="submit"
         disabled={ !isValid }
-      >
-        Entrar
-      </button>
+      />
     </form>
   );
 }

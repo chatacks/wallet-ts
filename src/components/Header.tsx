@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
-import { UserEmailType } from '../types';
+import { ReduxState } from '../types';
 
-function Header() {
-  const userEmail = useSelector((state: UserEmailType) => state.user.email);
+function Header({ totalExpense }: { totalExpense: string }) {
+  const userEmail = useSelector((state: ReduxState) => state.user.email);
 
   return (
     <div>
       <p data-testid="email-field">{userEmail}</p>
-      <p data-testid="total-field">0</p>
+      <p data-testid="total-field">{totalExpense}</p>
       <p data-testid="header-currency-field">BRL</p>
     </div>
   );

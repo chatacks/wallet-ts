@@ -10,7 +10,6 @@ function Button(
   return (
     <div>
       <button
-        data-testid="password-input"
         type={ type }
         onClick={ onClick }
         disabled={ disabled }

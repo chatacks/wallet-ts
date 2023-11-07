@@ -1,13 +1,16 @@
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+
 export type InputProps = {
-  type: string;
   label: string;
+  type: string;
   value: string;
   name: string;
   id: string;
   placeholder?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
-  testId: string
+  testId?: string
 };
 
 export type ButtonProps = {
@@ -23,7 +26,37 @@ export type FormLoginType = {
 };
 
 export type UserEmailType = {
-  user: {
-    email: string;
-  }
+  email: string;
 };
+
+export type WalletType = {
+  currencies: string[];
+  expenses: ExpensesFormType[];
+  editor: boolean;
+  idToEdit: number;
+};
+
+export type Currencies = {
+  [key: string]: {
+    name: string
+    code: string
+    ask: string
+  },
+};
+
+export type ExpensesFormType = {
+  id: number;
+  value: string;
+  description: string;
+  currency: string;
+  method: string;
+  tag: string;
+  exchangeRates: Currencies;
+};
+
+export type ReduxState = {
+  user: UserEmailType;
+  wallet: WalletType;
+};
+
+export type Dispatch = ThunkDispatch<ReduxState, null, AnyAction>;
