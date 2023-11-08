@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux';
 import { REQUEST_SUCCESSFUL } from '../actions/actionThunk';
 import { WALLET_FORM } from '../actions/actionWallet';
+import { REMOVE_EXPENSE } from '../actions/actionRemove';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -22,6 +23,13 @@ const wallet = (state = INITIAL_STATE, action: AnyAction) => {
         ...state,
         expenses: [...state.expenses, action.payload.form],
       };
+
+    case REMOVE_EXPENSE:
+      return {
+        ...state,
+        expenses: action.payload.expenseId,
+      };
+
     default:
       return state;
   }
