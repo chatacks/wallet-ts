@@ -1,4 +1,6 @@
-export const initialExpensesValue = {
+import { ExpensesFormType } from '../types';
+
+export const initialExpensesValue: ExpensesFormType = {
   id: 0,
   value: '',
   description: '',
@@ -8,7 +10,6 @@ export const initialExpensesValue = {
   exchangeRates: {
     USD: {
       code: '',
-      codein: '',
       name: '',
       ask: '',
     },

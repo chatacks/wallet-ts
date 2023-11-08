@@ -1,8 +1,16 @@
 import { useSelector } from 'react-redux';
 import { ReduxState } from '../types';
 
-function Header({ totalExpense }: { totalExpense: string }) {
+function Header() {
   const userEmail = useSelector((state: ReduxState) => state.user.email);
+  const { expenses } = useSelector((state: ReduxState) => state.wallet);
+
+  const conversionExpense = expenses.map((expense) => (Number(expense.value)
+  * Number(expense.exchangeRates[expense.currency].ask)).toFixed(2));
+
+  const totalExpense = (conversionExpense
+    .reduce((prevExpense, currentExpense) => prevExpense
+    + Number(currentExpense), 0)).toFixed(2);
 
   return (
     <div>
