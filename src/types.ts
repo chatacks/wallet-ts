@@ -18,6 +18,7 @@ export type ButtonProps = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   type: 'button' | 'submit';
   disabled?: boolean;
+  testId?: string;
 };
 
 export type FormLoginType = {

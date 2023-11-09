@@ -2,9 +2,10 @@ import { ButtonProps } from '../../types';
 
 function Button(
   { label,
-    onClick = () => {},
+    onClick,
     type = 'button',
     disabled = false,
+    testId,
   }: ButtonProps,
 ) {
   return (
@@ -13,6 +14,7 @@ function Button(
         type={ type }
         onClick={ onClick }
         disabled={ disabled }
+        data-testid={ `${testId}-btn` }
       >
         { label }
       </button>

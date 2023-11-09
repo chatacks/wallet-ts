@@ -5,11 +5,7 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 import { FormLoginType } from '../types';
 import { userEmail } from '../redux/actions/actionUser';
-
-const initialFormValue = {
-  email: '',
-  password: '',
-};
+import { initialFormValue } from '../utils/characteristicsForm';
 
 function Login() {
   const [formData, setFormData] = useState<FormLoginType>(initialFormValue);
@@ -48,7 +44,6 @@ function Login() {
         value={ formData.email }
         onChange={ handleFormChange }
         placeholder="Email"
-        required
       />
 
       <Input
@@ -60,7 +55,6 @@ function Login() {
         value={ formData.password }
         onChange={ handleFormChange }
         placeholder="Senha"
-        required
       />
 
       <Button

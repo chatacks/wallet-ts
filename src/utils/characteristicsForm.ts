@@ -16,6 +16,11 @@ export const initialExpensesValue: ExpensesFormType = {
   },
 };
 
+export const initialFormValue = {
+  email: '',
+  password: '',
+};
+
 export const arrayMethods: string[] = [
   'Dinheiro',
   'Cartão de crédito',
