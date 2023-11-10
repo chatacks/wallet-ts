@@ -39,11 +39,13 @@ const wallet = (state = INITIAL_STATE, action: AnyAction) => {
       };
 
     case TO_EDIT:
-      const findId = state.expenses.find((expense) => expense.id === action.payload.idToEdit);
+      const findId = state.expenses
+        .find((expense) => expense.id === action.payload.idToEdit);
       return {
         ...state,
         editor: action.payload.editor,
-        expenses: state.expenses.map((expense) => (expense.id === findId.id ? action.payload.editExpense : expense)),
+        expenses: state.expenses
+          .map((expense) => (expense.id === findId.id ? action.payload.editExpense : expense)),
         idToEdit: action.payload.idToEdit,
       };
     default:
