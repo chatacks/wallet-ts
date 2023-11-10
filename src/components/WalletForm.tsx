@@ -36,8 +36,8 @@ function WalletForm() {
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const recoveryFetch = await getCurrencies();
     if (expenseEditor) {
+      const recoveryFetch = await getCurrencies();
       dispatch(actionToEdit(expenseIdToEdit, { ...formData,
         exchangeRates: recoveryFetch,
         id: expenseIdToEdit }));
