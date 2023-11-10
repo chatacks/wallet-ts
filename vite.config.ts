@@ -19,6 +19,7 @@ export default defineConfig({
         "src/main.ts",
         "src/redux/*",
         "src/tests/*",
+        "src/utils/*"
       ],
       provider: 'c8'
     }
