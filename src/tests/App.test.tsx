@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
-import mockData from './helpers/mockData';
+// import mockData from './helpers/mockData';
 
 const initialState = {
   user: {
@@ -42,7 +42,6 @@ describe('<App />', () => {
     expect(button).toBeEnabled();
 
     await user.click(button);
-    screen.debug();
   });
 
   it('Verifica se ao estar na página carteira renderiza os elementos corretamente', () => {
@@ -87,6 +86,8 @@ describe('<App />', () => {
 
     expect(value).toHaveValue(120);
 
+    // const currency = screen.getByTestId('currency-input');
+
     const method = screen.getByRole('combobox', { name: /método de pagamento:/i });
     const creditCard = screen.getByRole('option', { name: /cartão de crédito/i });
     await user.selectOptions(method, creditCard);
@@ -94,8 +95,17 @@ describe('<App />', () => {
     expect(method).toHaveValue('Cartão de crédito');
 
     const button = screen.getByRole('button', { name: /adicionar despesa/i });
+
     await user.click(button);
 
-    expect(fetch).toHaveBeenCalled();
+    expect(global.fetch).toHaveBeenCalled();
+    expect(global.fetch).toHaveBeenCalledWith(endpoint);
+    screen.debug();
+
+    const editButton = await screen.findByTestId('edit-btn');
+    await user.click(editButton);
+
+    const deleteButton = await screen.findByTestId('delete-btn');
+    await user.click(deleteButton);
   });
 });

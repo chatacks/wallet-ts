@@ -10,11 +10,15 @@ import {
   arrayTags,
   initialExpensesValue,
 } from '../utils/characteristicsForm';
+import { actionToEdit } from '../redux/actions/actionEdit';
+import getCurrencies from '../utils/getCurrencies';
 
 function WalletForm() {
   const [formData, setFormaData] = useState<ExpensesFormType>(initialExpensesValue);
   const dispatch: Dispatch = useDispatch();
   const currenciesArray = useSelector((state: ReduxState) => state.wallet.currencies);
+  const expenseEditor = useSelector((state: ReduxState) => state.wallet.editor);
+  const expenseIdToEdit = useSelector((state: ReduxState) => state.wallet.idToEdit);
 
   useEffect(() => {
     dispatch(currenciesThunk());
@@ -30,10 +34,18 @@ function WalletForm() {
     }));
   };
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(walletForm(formData));
-    setFormaData({ ...initialExpensesValue, id: formData.id + 1 });
+    const recoveryFetch = await getCurrencies();
+    if (expenseEditor) {
+      dispatch(actionToEdit(expenseIdToEdit, { ...formData,
+        exchangeRates: recoveryFetch,
+        id: expenseIdToEdit }));
+      setFormaData({ ...initialExpensesValue, id: formData.id + 1 });
+    } else {
+      dispatch(walletForm(formData));
+      setFormaData({ ...initialExpensesValue, id: formData.id + 1 });
+    }
   };
 
   return (
@@ -95,7 +107,7 @@ function WalletForm() {
       />
 
       <Button
-        label="Adicionar Despesa"
+        label={ expenseEditor ? 'Editar despesa' : 'Adicionar despesa' }
         type="submit"
       />
     </form>

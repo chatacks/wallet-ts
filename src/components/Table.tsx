@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ReduxState } from '../types';
 import { actionRemoveExpense } from '../redux/actions/actionRemove';
 import Button from './Button';
+import { actionGetIdToEdit, actionToEdit } from '../redux/actions/actionEdit';
 
 function Table() {
   const expenses = useSelector((state: ReduxState) => state.wallet.expenses);
@@ -14,9 +15,12 @@ function Table() {
 
   const editExpense = (expenseId: number) => {
     const editedsExpenses = expenses.find((expense) => expense.id === expenseId);
-  };
+    console.log(editedsExpenses);
 
-  editExpense(0);
+    if (editedsExpenses) {
+      dispatch(actionGetIdToEdit(editedsExpenses.id));
+    }
+  };
 
   return (
     <div>
@@ -51,7 +55,9 @@ function Table() {
               <td>
                 <Button
                   label="Editar"
+                  testId="edit"
                   type="button"
+                  onClick={ () => editExpense(expense.id) }
                 />
                 <Button
                   label="Excluir"
@@ -59,7 +65,6 @@ function Table() {
                   type="button"
                   onClick={ () => removeExpense(expense.id) }
                 />
-
               </td>
             </tr>
           ))}
