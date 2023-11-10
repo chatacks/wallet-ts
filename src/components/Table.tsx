@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ReduxState } from '../types';
 import { actionRemoveExpense } from '../redux/actions/actionRemove';
 import Button from './Button';
-import { actionGetIdToEdit, actionToEdit } from '../redux/actions/actionEdit';
+import { actionGetIdToEdit } from '../redux/actions/actionEdit';
 
 function Table() {
   const expenses = useSelector((state: ReduxState) => state.wallet.expenses);
