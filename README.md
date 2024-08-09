@@ -12,11 +12,10 @@ Este projeto é uma aplicação de carteira digital que permite controlar seus g
 
 ## Tecnologias Utilizadas
 
-- **Linguagem**: JavaScript
+- **Linguagem**: Typescript
 - **Framework**: React
 - **Gerenciamento de Estado**: Redux com Redux Thunk
 - **Roteamento**: React Router DOM
-- **Estilização**: CSS com suporte a Stylelint para padronização
 - **Ícones**: React Icons
 - **Teste**: Testing Library com Jest
 - **Ferramentas de Desenvolvimento**: Redux DevTools Extension
